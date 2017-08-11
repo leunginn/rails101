@@ -24,6 +24,9 @@ class GroupsController < ApplicationController
 
   def edit
     @group=Group.find(params[:id])
+    if current_user != @group.user
+      redirect_to root_path, alert: "You have no permission."
+    end
   end
 
   def update
@@ -33,6 +36,9 @@ class GroupsController < ApplicationController
     else
       render :edit
     end
+    if current_user != @group.user
+      redirect_to root_path, alert: "You have no permission."
+    end
   end
 
   def destroy
@@ -40,6 +46,9 @@ class GroupsController < ApplicationController
     @group.destroy
     flash[:alert]="Group deleted"
     redirect_to groups_path
+    if current_user != @group.user
+      redirect_to root_path, alert: "You have no permission."
+    end
   end
 
   private
