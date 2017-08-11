@@ -22,7 +22,10 @@
             <td><%= post.user.email%></td>
             <td><%= post.created_at%></td>
           </tr>
-        </tbody>
-      <%end%>
+        <%end%>
+      </tbody>      
     </table>
+    <div class="text-center">
+      <%= will_paginate @posts %>
+    </div>
 </div>
